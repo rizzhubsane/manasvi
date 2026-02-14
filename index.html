@@ -1682,6 +1682,13 @@
 
         function goTo(n) {
             if (n === currentPage) return;
+
+            // Start music on first user interaction
+            const music = document.getElementById('bgMusic');
+            if (music && music.paused) {
+                music.play().catch(e => console.log('Autoplay blocked:', e));
+            }
+
             const old = pages[currentPage];
             const next = pages[n];
             const dir = n > currentPage ? 'exit-up' : 'exit-fade';
